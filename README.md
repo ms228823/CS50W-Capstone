@@ -397,18 +397,18 @@ python -m venv .venv
 ```bash
 source .venv/bin/activate
 ```
+## 5. Navigate to the Backend Directory
+ 
+````bash
+cd backend
+````
 
-## 5. Install Requirements
+## 6. Install Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 6. Navigate to the Backend Directory
- 
-````bash
-cd backend
-````
 
 ## 7. Run Migrations
 
