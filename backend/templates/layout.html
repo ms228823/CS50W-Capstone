@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optica</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.css' %}">
+    <script src="https://kit.fontawesome.com/68a0079c41.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="{% static 'js/helpers.js' %}"></script>
+    <script type="module" src="{% static 'js/scripts.js' %}"></script>
+    
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+<body>
+    {% csrf_token %}
+    <nav class="nav_container">
+        <h4>Optical Store System</h4>
+        <h5 class="user_greet_and_name">Welcome back, {{request.user.username}}</h5>
+        <div class="nav_links_and_user_container">
+            <div class="nav_links_container">
+                {% if request.user.is_authenticated %}
+                    {% comment %} <p class="nav_link add_invoice_link" data-page-name="add_invoice">Add invoice</p> {% endcomment %}
+                    {% comment %} <p class="nav_link add_invoice_link" data-page-name="add_invoice">Invoices</p> {% endcomment %}
+                    <p class="nav_link dashboard_link" data-page-name="dashboard_link">Dashboard</p>
+                    <div class="nav_item dropdown">
+                        <button class="dropdown_toggle">Invoices <i class="fa fa-caret-down dropdown_icon"></i></button>
+                        <ul class="dropdown_menu">
+                            <li><p class="nav_link add_invoice_link" data-page-name="add_invoice">Add Invoices</p></li>
+                            <li><p class="nav_link search_invoices_link" data-page-name="search_invoices">Search Invoices</p></li>
+                            {% comment %} <li><a href="#seo">SEO Marketing</a></li> {% endcomment %}
+                        </ul>
+                    </div>
+
+                    <!-- TODO LATER:  Under development not the jinja comments -->
+                    <!--<div class="nav_item dropdown">
+                        <button class="dropdown_toggle">Sales and Accounting <i class="fa fa-caret-down dropdown_icon"></i></button>
+                        <ul class="dropdown_menu">
+                            <li><p class="nav_link journal_link" data-page-name="journal">Journal</p></li>
+                            <li>
+                                <div class="nav_sup_item dropdown">
+                                    <button class="dropdown_toggle nested_toggle">Revenues <i class="fa fa-caret-right dropdown_icon"></i></button>
+                                    <ul class="dropdown_menu dropdown_menu_sub">
+                                        <li><p class="nav_link add_revenues_link" data-page-name="add_revenues">Add Revenues</p></li>
+                                        <li><p class="nav_link show_revenues_link" data-page-name="show_revenues">Show Revenues</p></li>
+                                        {% comment %} <li><a href="#seo">SEO Marketing</a></li> {% endcomment %}
+                                    </ul>
+                                </div>
+                                {% comment %} <p class="nav_link search_invoices_link" data-page-name="search_invoices">Search Invoices</a></p> {% endcomment %}
+                            </li>
+                            <li>
+                                <div class="nav_sup_item dropdown">
+                                    <button class="dropdown_toggle nested_toggle">Expenses <i class="fa fa-caret-right dropdown_icon"></i></button>
+                                    <ul class="dropdown_menu dropdown_menu_sub">
+                                        <li><p class="nav_link add_expenses_link" data-page-name="add_expenses">Add Expenses</a></p></li>
+                                        <li><p class="nav_link show_expenses_link" data-page-name="show_expenses">Show Expenses</a></p></li>
+                                        {% comment %} <li><a href="#seo">SEO Marketing</a></li> {% endcomment %}
+                                    </ul>
+                                </div>
+                                {% comment %} <p class="nav_link search_invoices_link" data-page-name="search_invoices">Search Invoices</a></p> {% endcomment %}
+                            </li>
+                            <li><p class="nav_link show_revenues_and_expenses_link" data-page-name="show_revenues_and_expenses">Show revenues and expenses</a></p></li>
+                        </ul>
+                    </div>
+                    <div class="nav_item dropdown">
+                        <button class="dropdown_toggle">Inventory <i class="fa fa-caret-down dropdown_icon"></i></button>
+                        <ul class="dropdown_menu">
+                            <li><p class="nav_link show_inventory_link" data-page-name="show_inventory">Show Inventory</a></p></li>
+                            <li><p class="nav_link add_inventory_item_link" data-page-name="add_inventory_item">Add Inventory Item</a></p></li>
+                        </ul>
+                    </div>
+                    {% comment %} <p class="nav_link inventory_link" data-page-name="inventory">Inventory</p>
+                    <p class="nav_link add_product_link" data-page-name="add_product">Add Product</p> {% endcomment %}
+
+                    <p class="nav_link customers_link" data-page-name="customers">Customers</p>
+
+                    {% comment %} <p class="nav_link reports_link" data-page-name="reports">Reports</p> {% endcomment %}
+
+                    <p class="nav_link reports_link" data-page-name="reports">Reports</p>
+                    {% comment %} <p class="nav_link logout_link"><a href="{% url 'logout' %}">logout</a></p> {% endcomment %}-->
+
+                {% else %}
+                    <p class="nav_link login_link"><a href="{% url 'login' %}">login</a><p>
+                {% endif %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+                <div class="user_menu">
+                    <button class="user_btn dropdown_toggle">Hello, {{request.user.username}} <i class="fa fa-caret-down dropdown_icon"></i></button>
+                    <ul class="dropdown_menu">
+
+                        <!-- TODO LATER:  Under development not the jinja comments -->
+                        {% comment %} <li><a href="/settings">Settings</a></li> {% endcomment %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
