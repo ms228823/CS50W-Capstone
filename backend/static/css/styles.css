@@ -279,18 +279,69 @@ select option {
     opacity: 1;
 }
 
+/* ================= LOGIN ================= */
 
+.login_container {
+    width: 360px;
+    /* width: 500px; */
+    margin: 80px auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 30px 28px;
+}
 
+.login_container .input-field {
+    margin-bottom: 14px;
+}
 
+.login_container label {
+    display: block;
+    font-size: 14px;
+    /* font-size: 13px; */
+    color: #555;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
 
+.login_container input {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    /* font-size: 13px; */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0 12px;
+    background: #fafafa;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: 0.3s;
+}
 
+.login_container input:focus {
+    outline: none;
+    border-color: #16426d;
+    background: #fff;
+}
 
+.login_container #submit_login {
+    width: 100%;
+    height: 40px;
+    margin-top: 8px;
+    background: #185fa5;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    /* font-size: 13px; */
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-
-
-
-
-
+.login_container #submit_login:hover {
+    background: #0a3865;
+}
 
 /* ================= FORM CONTAINERS (Add Invoice / Search) ================= */
 
