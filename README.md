@@ -369,13 +369,13 @@ While the core system is complete and functional, the following areas are natura
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/mo25-coder/CS50W-FINAL-PROJECT
+git clone https://github.com/ms228823/CS50W-Capstone
 ````
 
 ## 2. Navigate to the Project Directory
 
 ```bash
-cd project_directory
+cd CS50W-Capstone
 ```
 
 ## 3. Create a Virtual Environment
