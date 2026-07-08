@@ -1,7 +1,7 @@
 asgiref==3.11.1
 certifi==2026.6.17
 charset-normalizer==3.4.7
-Django==6.0.6
+Django==5.1.5
 django-cors-headers==4.9.0
 django-phonenumber-field==8.4.0
 django-phonenumbers==1.0.1

@@ -529,7 +529,7 @@ select option {
 
 /* ==== prescription table (input/print) ==== */
 
-.prescription_table_input {
+.prescription_table, .prescription_table_input {
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
@@ -546,6 +546,7 @@ select option {
 
 .invoice_items_table {
     width: 100%;
+    margin-bottom: 20px;
     border-collapse: collapse;
 }
 
