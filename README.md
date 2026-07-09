@@ -2,68 +2,47 @@
 
 ## Video Demo
 
-[Add your YouTube video link here — required before final submission]
+[Youtube Video](https://www.youtube.com/watch?v=M97MYsimmqI)
 
 ---
 
 # Description
 
-This project is a web-based management system designed for optical stores that sell glasses, lenses, contact lenses, and accessories. The system was built using Django for the backend and Vanilla JavaScript with ES modules for the frontend. Bootstrap 5 and custom CSS were used for styling and responsive design.
+This project is a web-based management system designed for optical stores that sell glasses, lenses, contact lenses, and accessories. The system was built using Django for the backend. The frontend is implemented as a **Single Page Application (SPA)** using Vanilla JavaScript ES Modules. After login, all pages including the dashboard, invoice creation, invoice search, and printable invoice view are rendered dynamically through JavaScript without navigating between multiple HTML pages.
 
 The main purpose of this project is to simplify the workflow inside an optical store by combining customer management, prescription handling, invoice creation, printing, and dashboard analytics into one centralized application.
 
-Unlike a traditional e-commerce website, this project focuses on internal business operations rather than public online shopping. Employees can create invoices, manage prescriptions, search customer records, print professional invoices, and monitor business statistics from a dashboard interface.
-
-The application was designed to simulate a real optical store workflow where products may come from existing inventory, supplier orders, or custom services and repairs.
+This application is designed as an **internal business management system** used by employees inside an optical store. Employees can create invoices, manage prescriptions, search customer records, print professional invoices, and monitor business statistics from a dashboard interface. There is no public storefront and no customer-facing interface.
 
 ---
 
 # Distinctiveness and Complexity
 
-I believe this project satisfies the distinctiveness and complexity requirements because it is fundamentally different from the previous CS50W projects.
+This project is fundamentally different from all previous CS50W projects. It is an internal operational management system for an optical business, not a public-facing website.
 
-Although the project includes products and invoices, it is not an e-commerce website like Project 2 (Commerce). Users are not browsing products publicly, placing bids, or purchasing items through a storefront. Instead, this application is focused on internal operational management for an optical business.
+The application is implemented as a **Single Page Application**. After authentication, all content is rendered dynamically through JavaScript modules. The browser never navigates to a new URL after login. Everything — dashboard, invoice creation, search, print view — renders inside a single container without page reloads. This is fundamentally different from the server-rendered template approach used in previous projects.
 
-The application contains domain-specific logic related to optical stores, including prescriptions, lens specifications, invoice generation, pickup dates, dynamic invoice items, supplier orders, and inventory-linked products. These workflows are significantly different from the auction-based system from Project 2.
-
-The project is also substantially more complex than the earlier assignments because it combines multiple systems together into a single workflow-driven application.
+The project contains domain-specific logic related to optical stores including prescriptions, lens specifications, invoice generation, pickup dates, dynamic invoice items, supplier orders, and inventory-linked products.
 
 One of the most complex parts of the project is the invoice creation system. Each invoice item can come from three different sources:
 
-- Existing inventory products
-- Supplier orders
-- Custom services or repairs
+- **Inventory** — uses existing products from stock. Frame products automatically fill their stored category (Medical or Sunglasses) as a read-only field pulled directly from inventory. Inventory categories include frames (Medical and Sunglasses), optical lenses, contact lenses, and accessories.
+- **Order** — allows special supplier orders not yet in inventory. Order items are tracked separately depending on type, with lens-based orders including sphere and cylinder specifications.
+- **Custom** — allows free-text services, repairs, or manual entries without requiring inventory records.
 
-Depending on the selected source and category, the frontend dynamically renders completely different input fields using JavaScript modules. For example:
+Depending on the selected source and category, the frontend dynamically renders completely different input fields using JavaScript modules.
 
-- Inventory items automatically retrieve pricing information, and frame products auto-fill their stored category (Medical or Sunglasses) as a read-only field pulled directly from inventory.
-- Order items include supplier information and lens specifications.
-- Custom items allow free-text descriptions without requiring inventory records.
+Another major complexity is the prescription system. Prescriptions support right and left eye measurements separately, including sphere, cylinder, axis, and IPD values. Both reading and distance prescriptions are supported.
 
-Another major complexity point is the prescription system. Prescriptions support right and left eye measurements separately, including sphere, cylinder, axis, and IPD values. The application also supports both reading and distance prescriptions.
+The frontend architecture uses Vanilla JavaScript ES modules split across two files — `scripts.js` for page rendering and routing logic, and `helpers.js` for reusable helper functions shared across the application.
 
-The frontend architecture is also more advanced than previous projects. Instead of relying heavily on server-rendered templates for everything, much of the application logic is handled client-side using Vanilla JavaScript ES modules. The logic is split between rendering/routing functionality and reusable helper functions.
+The dashboard is dynamically rendered from a single JSON endpoint and displays business analytics including total products, customers, sales, invoices, low stock warnings, and top-selling products.
 
-The dashboard is dynamically rendered from a single JSON endpoint and displays business analytics including:
+The application also includes a custom user system with roles and account statuses. The models and backend logic for this system are already fully implemented. In the current submission, the login view checks for blocked account status and denies access. Registration creates accounts with an `on_hold` status by default, requiring admin approval before access is granted. Full role-based permission enforcement and account management UI are listed under future improvements.
 
-- Total products
-- Customers
-- Sales
-- Invoices
-- Low stock warnings
-- Top-selling products
+Some fields in the models are pre-built for future improvements and are not yet exposed in the UI. These include order tracking details in `OrderItem` and `OrderLens`, lens color and usage in `LensDetails`, and activity notes and last access time in the `User` model.
 
-The application additionally includes:
-
-- Custom user roles
-- Account status handling
-- Failed login tracking
-- Printable invoice layouts
-- Dynamic invoice calculations, including automatic total, paid, and remaining amount tracking per invoice
-- Search functionality
-- Relational database modeling
-
-Altogether, this project combines backend architecture, frontend dynamic rendering, relational database design, business workflow management, and responsive UI behavior into one integrated system.
+Altogether this project combines backend architecture, frontend dynamic rendering, relational database design, business workflow management, and custom CSS responsive design into one integrated system.
 
 ---
 
@@ -71,36 +50,34 @@ Altogether, this project combines backend architecture, frontend dynamic renderi
 
 ## Authentication System
 
-The application includes:
-
 - Login
 - Registration
 - Logout
 - Session validation
 
-Newly registered accounts automatically start with an `on_hold` status until approved by an administrator.
+Newly registered accounts automatically start with an `on_hold` status and require admin approval. The login view checks for `blocked` status and denies access accordingly.
 
-The custom user model also supports:
+The custom user model is fully built with the following roles and statuses, ready for future enforcement:
 
-- Roles:
-  - super_admin
-  - admin
-  - viewer
-  - tester
-  - seller
+**Roles:**
+- super_admin
+- admin
+- viewer
+- tester
+- seller
 
-- Account statuses:
-  - working
-  - on_hold
-  - blocked
+**Account statuses:**
+- working
+- on_hold
+- blocked
 
-The system also tracks failed login attempts.
+Failed login tracking is implemented in the model.
 
 ---
 
 ## Dashboard
 
-The dashboard displays important business information dynamically, including:
+Displays dynamically from a single JSON endpoint:
 
 - Total products
 - Total customers
@@ -110,79 +87,71 @@ The dashboard displays important business information dynamically, including:
 - Low-stock warnings
 - Top-selling products
 
-All dashboard data is rendered client-side from a single JSON endpoint.
-
 ---
 
 ## Invoice Creation System
 
-The invoice creation page is the core feature of the application.
-
 Users can:
 
-- Select existing customers
-- Create new customers
-- Add optional prescriptions
+- Select existing customers or create new ones
+- Add optional prescriptions (distance or reading)
 - Add multiple invoice items dynamically
 
 Each invoice item supports three sources:
 
 ### Inventory Source
-Uses existing products from stock and automatically fills pricing information. Frame products additionally auto-fill their stored category (Medical or Sunglasses) as a read-only field.
+Uses existing products from stock. Categories include:
+- Frames (Medical or Sunglasses — category auto-fills as read-only from the stored product data)
+- Optical lenses
+- Contact lenses
+- Accessories
 
 ### Order Source
-Allows special supplier orders that are not yet in inventory. Order items are tracked separately depending on type (frame-based items vs. lens-based items with sphere/cylinder specifications).
+Special supplier orders not in inventory. Lens orders include sphere and cylinder fields. Order details are stored in `OrderItem` and `OrderLens` models, which are pre-built with additional fields (supplier, color, receipt status) ready for future order tracking UI.
 
 ### Custom Source
-Allows custom services, repairs, or manual entries without requiring inventory records.
+Free-text services, repairs, or manual entries without inventory records.
 
 ---
 
 ## Payment Tracking
 
-Each invoice tracks the total amount, paid amount, and remaining amount owed. The total is calculated automatically from invoice item subtotals, and the remaining amount updates automatically whenever the paid amount changes.
+Each invoice tracks total amount, paid amount, and remaining amount. The total calculates automatically from item subtotals. The remaining amount updates automatically when the paid amount changes.
 
 ---
 
 ## Prescription Support
 
-The system supports optical prescriptions including:
-
-- Right eye and left eye measurements
-- Sphere
-- Cylinder
-- Axis
-- IPD
-- Reading prescriptions
-- Distance prescriptions
-
-Prescriptions can optionally be linked to invoices, and the printed invoice only displays a prescription section when prescription data actually exists.
+- Right and left eye measurements
+- Sphere, cylinder, axis, IPD
+- Reading and distance prescriptions
+- Optionally linked to invoices
+- Prescription section only prints when data exists
 
 ---
 
 ## Search Functionality
 
-Invoices can be searched using:
+Invoices can be searched by:
 
-- Invoice ID
-- Customer name
-- Customer phone number (either field alone, or both together)
+- Invoice ID alone
+- Customer name alone
+- Customer phone number alone
+- Customer name and phone number together
 
-Results are displayed as interactive cards.
+Results display as interactive cards. Clicking a card opens the full printable invoice view.
 
 ---
 
 ## Invoice Printing
 
-The application includes a print-friendly invoice page optimized for A4 paper.
-
-The printable invoice contains:
+Print-friendly A4 invoice layout containing:
 
 - Customer information
 - Itemized products
-- Prescription details (only shown when a prescription exists)
-- Totals, paid amount, and remaining amount
-- Payment information
+- Prescription details (only when a prescription exists)
+- Totals, paid amount, remaining amount
+- Payment method
 - Pickup date
 
 Printing is handled using `window.print()`.
@@ -199,12 +168,11 @@ Printing is handled using `window.print()`.
 ## Frontend
 - Vanilla JavaScript
 - ES Modules
-- Bootstrap 5
 - Custom CSS
+- Bootstrap
 
 ## Database
-- SQLite (during development)
-- Django ORM relationships
+- SQLite (development)
 
 ## Additional Packages
 - phonenumber_field
@@ -215,17 +183,20 @@ Printing is handled using `window.print()`.
 
 ## Main Backend Files
 
-### `models.py`
-Contains all database models including:
+### `models.py` (accounts app)
+Contains the custom `User` model with roles, statuses, and failed login tracking. Some fields are pre-built for future features including notes on activity and last access time.
 
-- User
-- Product
-- Customer
-- Prescription
-- Invoice
-- InvoiceItem
-- OrderItem
-- OrderLens
+### `models.py` (optics app)
+Contains all store-related models:
+
+- **Product** — inventory items with barcode, quantity, pricing, and frame category (Medical or Sunglasses).
+- **LensDetails** — sphere, cylinder, usage, and color details linked to lens products. Usage and color fields are pre-built for future improvements.
+- **Customer** — name, phone, email.
+- **Prescription** — right and left eye data, reading and distance types.
+- **Invoice** — customer reference, payment method, totals, pickup date, prescription link, seller, created by.
+- **InvoiceItem** — line items supporting inventory, order, and custom sources.
+- **OrderItem** — supplier order details for frame-type orders. Fields including color, supplier, and receipt status are pre-built for future order tracking UI.
+- **OrderLens** — supplier order details for lens-type orders including sphere, cylinder, lens type, usage, and color. Pre-built for future order tracking UI.
 
 ### `views.py`
 Handles backend logic and JSON responses.
@@ -238,123 +209,47 @@ Defines application routes.
 ## Frontend Templates
 
 ### `layout.html`
-Acts as the main shared layout template across the application.
-It contains the common page structure, Bootstrap imports, navigation layout, CSS and JavaScript module imports, and shared UI elements rendered across multiple pages.
+Main shared layout containing navigation, CSS imports, and JavaScript module imports.
 
 ### `index.html`
-Extends `layout.html` and contains the main application container where dashboard and dynamic frontend content are rendered using JavaScript.
+Main SPA container. All dynamic content renders here after login.
 
 ### `login.html`
-Extends `layout.html` and contains the authentication form used for user login, including CSRF protection and input fields for username and password.
+Authentication form.
 
 ---
 
 ## Frontend Files
 
 ### `scripts.js`
-Contains frontend rendering and page logic.
+Frontend page rendering and routing logic including dashboard, invoice creation, and search.
 
 ### `helpers.js`
-Contains reusable helper functions shared across the application.
+Reusable helper functions shared across the application including invoice item row rendering, subtotal calculation, prescription data collection, and printable invoice display.
 
 ### `styles.css`
-Contains custom styling for the application.
-
----
-
-# Database Models
-
-## Product
-Represents store inventory items including:
-
-- Frames
-- Lenses
-- Contact lenses
-- Accessories
-
-Tracks:
-- Barcode
-- Quantity
-- Purchase price
-- Selling price
-- Frame category (Medical or Sunglasses), used to auto-fill the invoice item form when a frame is selected
-
----
-
-## Customer
-Stores customer information including:
-
-- Name
-- Phone number
-- Email
-
----
-
-## Prescription
-Stores optical prescription information for both eyes.
-
----
-
-## Invoice
-Represents customer invoices and payment tracking, including total price, paid amount, and remaining amount.
-
----
-
-## InvoiceItem
-Represents line items inside invoices.
-
-Supports:
-- Inventory items
-- Order items
-- Custom items
-
----
-
-## OrderItem
-Tracks supplier order details (item color, supplier, notes, receipt status) for invoice items that are frame-type special orders rather than existing inventory stock.
-
----
-
-## OrderLens
-Tracks supplier order details for lens-type special orders, including lens type (optical or contact), sphere, cylinder, lens usage, and lens color, in addition to supplier and receipt status.
-
----
-
-# Frontend Architecture
-
-The frontend uses Vanilla JavaScript ES modules instead of frontend frameworks.
-
-The logic is separated into multiple files to improve maintainability and organization.
-
-Dynamic rendering is heavily used throughout the application, especially in:
-
-- Dashboard rendering
-- Invoice item generation
-- Search results
-- Dynamic forms
+Custom styling for the application.
 
 ---
 
 # Mobile Responsiveness
 
-The application was designed to be responsive using Bootstrap 5 and custom CSS.
-
-Layouts adapt to smaller screens and mobile devices to ensure usability across different device sizes.
+The application is responsive through custom CSS. All layout adaptation is handled manually without relying on any CSS framework grid or utility system.
 
 ---
 
 # Future Improvements
 
-The following systems are scaffolded but intentionally hidden from navigation until completed:
+The following features are scaffolded in the backend models, but are intentionally hidden from navigation until completed:
 
-- Inventory management UI
+- Full role-based permission enforcement (models and status checks already built)
+- Account management UI (roles, statuses, and failed login tracking already in models)
+- Order tracking UI (OrderItem and OrderLens models already pre-built with full field structure)
+- Inventory management pages
 - Accounting system
 - Reports
 - Customer management pages
 - Settings page
-
-While the core system is complete and functional, the following areas are natural directions for future expansion:
-
 - Supplier management
 - Sales analytics
 - PDF exports
@@ -370,7 +265,7 @@ While the core system is complete and functional, the following areas are natura
 
 ```bash
 git clone https://github.com/ms228823/CS50W-Capstone
-````
+```
 
 ## 2. Navigate to the Project Directory
 
@@ -397,18 +292,18 @@ python -m venv .venv
 ```bash
 source .venv/bin/activate
 ```
+
 ## 5. Navigate to the Backend Directory
- 
-````bash
+
+```bash
 cd backend
-````
+```
 
 ## 6. Install Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
-
 
 ## 7. Run Migrations
 
@@ -429,14 +324,14 @@ python manage.py runserver
 
 This project was developed as the CS50W Final Capstone Project.
 
-The application focuses on solving real-world optical store workflow problems rather than functioning as a traditional online store.
+The application focuses on solving real-world optical store workflow problems by providing an internal management system for store employees.
 
 The project intentionally emphasizes:
 
-* Dynamic frontend behavior
-* Relational database design
-* Business workflow management
-* Modular JavaScript architecture
-* Practical usability for store employees
+- Dynamic Single Page Application frontend behavior
+- Relational database design
+- Business workflow management
+- Modular JavaScript architecture using ES modules
+- Practical usability for store employees
 
-The core system — authentication, invoice creation, prescriptions, search, printing, and the dashboard — is complete and functional. The items listed under Future Improvements are optional extensions beyond the scope of this submission.
+The core system — authentication, invoice creation, prescriptions, search, printing, and the dashboard — is complete and functional. Items listed under Future Improvements are optional extensions beyond the scope of this submission.
