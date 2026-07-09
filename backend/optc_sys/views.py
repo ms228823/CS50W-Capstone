@@ -72,7 +72,7 @@ def admin_dashboard(request):
     )
 
     # DEBUGGING PURPOSES ONLY REMOVE !!!!!!!!!!!!!!!!!!IMPORTANT
-    Invoice.objects.all().update(created_at=timezone.now())
+    # Invoice.objects.all().update(created_at=timezone.now())
 
     # low_stock_count = Product.objects.filter(quantity__lte=5).count()
     low_stock_products = list(
