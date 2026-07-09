@@ -8,7 +8,7 @@
 
 # Description
 
-This project is a web-based management system designed for optical stores that sell glasses, lenses, contact lenses, and accessories. The system was built using Django for the backend. The frontend is implemented as a **Single Page Application (SPA)** using Vanilla JavaScript ES Modules. After login, all pages including the dashboard, invoice creation, invoice search, and printable invoice view are rendered dynamically through JavaScript without navigating between multiple HTML pages.
+This project is a web-based management system designed for optical stores that sell frames, glasses, lenses, contact lenses, and accessories. The system was built using Django for the backend. The frontend is implemented as a **Single Page Application (SPA)** using Vanilla JavaScript ES Modules. After login, all pages including the dashboard, invoice creation, invoice search, and printable invoice view are rendered dynamically through JavaScript without navigating between multiple HTML pages.
 
 The main purpose of this project is to simplify the workflow inside an optical store by combining customer management, prescription handling, invoice creation, printing, and dashboard analytics into one centralized application.
 
