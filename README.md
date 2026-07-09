@@ -175,7 +175,7 @@ Printing is handled using `window.print()`.
 - SQLite (development)
 
 ## Additional Packages
-- phonenumber_field
+- django-phonenumber-field
 
 ---
 
