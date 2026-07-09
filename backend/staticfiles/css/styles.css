@@ -32,8 +32,6 @@ select option {
     white-space: nowrap;
 }
 
-/* ================= NAV ================= */
-
 .nav_container {
     /* background-color: #13222a; */
     background-color: #888;
@@ -63,8 +61,6 @@ select option {
     margin-top: -10px;
 }
 
-
-/* ================= LINKS ================= */
 
 .nav_links_container,
 .nav_links_and_user_container {
@@ -104,27 +100,6 @@ select option {
     color: white !important;
 }
 
-/* ================= SPECIAL BUTTONS ================= */
-
-/* .logout_link{
-    background-color: #c0391f;
-} */
-
-/* .logout_link:hover{
-    background-color: #a9321f;
-} */
-
-/* .login_link{
-    background-color: #19875d;
-}
-
-.login_link:hover{
-    background-color: #15733e;
-} */
-
-
-
-/* ================= DROPDOWN ================= */
 
 .nav_item,
 .nav_sup_item {
@@ -164,7 +139,7 @@ select option {
     display: block; */
 }
 
-/* drop RIGHT for nested menus */
+
 .nav_sup_item .dropdown_menu {
     top: 0;
     left: 100%;
@@ -184,12 +159,10 @@ select option {
     padding: 0;
 }
 
-/* show class toggled by JS */
 .dropdown_menu.show {
     display: block;
 }
 
-/* ================= USER MENU ================= */
 
 .user_btn {
     background: transparent;
@@ -279,7 +252,6 @@ select option {
     opacity: 1;
 }
 
-/* ================= LOGIN ================= */
 
 .login_container {
     width: 360px;
@@ -343,7 +315,6 @@ select option {
     background: #0a3865;
 }
 
-/* ================= FORM CONTAINERS (Add Invoice / Search) ================= */
 
 .form_container {
     max-width: 900px;
@@ -431,7 +402,6 @@ select option {
     background: #0a3865;
 }
 
-/* ================= INVOICE ITEMS TABLE / BUTTONS ================= */
 
 .inventory_buttons {
     display: flex;
@@ -496,7 +466,6 @@ select option {
     background: #fcebeb;
 }
 
-/* ================= SEARCH INVOICE ================= */
 
 .search-form-container {
     max-width: 500px;
@@ -552,7 +521,6 @@ select option {
     margin-top: 16px;
 }
 
-/* ================= INVOICE PRINT SECTIONS ================= */
 
 .a4_invoice {
     width: 210mm;
@@ -578,7 +546,6 @@ select option {
     background: #f0f0f0;
 }
 
-/* ==== prescription table (input/print) ==== */
 
 .prescription_table, .prescription_table_input {
     width: 100%;
@@ -713,7 +680,6 @@ select option {
     background: #d5d5d5;
 }
 
-/* ======== print media ======== */
 
 @media print {
     body * {
@@ -751,7 +717,6 @@ select option {
     }
 }
 
-/* ================= DASHBOARD ================= */
 
 .dashboard_container {
     margin: 0 70px;

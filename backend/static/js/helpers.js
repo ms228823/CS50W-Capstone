@@ -34,7 +34,6 @@ export function renderOrderInRow(category, row) {
 }
 
 // Auto-fill Frame's Category
-
 export function renderCustomInRow(category, row) {
   row.querySelector(".td_name").innerHTML =
     `<input type="text" class="item_name" placeholder="Item Name">`;
@@ -71,7 +70,7 @@ export function formatSphCyl(value) {
   return formattedValue;
 }
 
-// Subtotal Calculation
+// Item Subtotal Calculation
 export function subtotalCalculation(row) {
   const quantityInput = row.querySelector(".product_quantity");
   const priceInput = row.querySelector(".product_price");
@@ -185,6 +184,7 @@ export function renderInventoryInRow(category, row) {
   }
 }
 
+// SET up Total price(T) of Inventory item from Quantity(Q) and selling price (P) T = Q x P
 export function setupInventoryAutoFill(container) {
   const productSelect = container.querySelector(".inventory_product_select");
 
@@ -313,6 +313,7 @@ export function addInvoiceItemRow(source) {
   }
 }
 
+// Calculate Remaining amount(R) from Total(T) and Paid(P) amount  R = T - P
 export function calculateRemainingAmount() {
   const amount = Number(document.getElementById("amount").value) || 0;
   const paid = Number(document.getElementById("paid").value) || 0;
@@ -322,6 +323,7 @@ export function calculateRemainingAmount() {
   );
 }
 
+// Calculate total prices of items
 export function calculateTotalAmount() {
   let total = 0;
 
@@ -336,6 +338,7 @@ export function calculateTotalAmount() {
   calculateRemainingAmount();
 }
 
+
 export function toggleInputs(row) {
   let inputs = document.querySelectorAll(`.${row}-input`);
   let checkbox = document.getElementById(`${row}-checkbox`);
@@ -345,6 +348,7 @@ export function toggleInputs(row) {
   });
 }
 
+// Toggle Search invoice (changing fields visibility of id and (name and phone) customer search inputs)
 export function toggleSearchInvoiceFields() {
   const searchType = document.getElementById("search_invoice_by").value;
   const searchById = document.querySelector(".search_by_id");
@@ -365,6 +369,8 @@ export function toggleSearchInvoiceFields() {
   }
 }
 
+
+// Toggle Search customer (changing fields visibility of new and existing customer inputs)
 export function toggleSearchCustomerFields() {
   // Customer Search type (New, Existing)
   const searchType = document.getElementById("customer_search_type").value;
@@ -395,6 +401,7 @@ export function toggleSearchCustomerFields() {
   }
 }
 
+// Filter Clients
 export function filterClientsList(event) {
   //   const searchInput = document.getElementById('searchInput').value.toLowerCase();
 
@@ -452,6 +459,7 @@ export function filterClientsList(event) {
 //     subtotalCalculation(row);
 // }
 
+// Show printable invoice 
 export function showInvoicePrint(invoice) {
   const indexContainer = document.querySelector(".index_container");
 
@@ -670,6 +678,7 @@ export function showInvoicePrint(invoice) {
   // `;
 }
 
+// prescription data getter function
 export function getPrescriptionData() {
   return {
     has_prescription:

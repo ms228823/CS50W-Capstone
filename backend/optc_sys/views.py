@@ -113,7 +113,6 @@ def admin_dashboard(request):
     )
 
 
-#########################################
 # @csrf_exempt
 @login_required
 @transaction.atomic

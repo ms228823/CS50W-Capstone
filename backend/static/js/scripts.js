@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
+// Dashboard page function (displaying information about store 
+// (Top selling, Today selling, low stock products, ...etc))
 function userDashboard(event) {
 
     // event.preventDefault();
@@ -218,6 +219,11 @@ function userDashboard(event) {
 
 }
 
+// Create Invoice page function (send data to backend containing customer's (New/Existing) info,
+// item(s)'s (Inventory, Order, and Custom) details, 
+// total ((Calculated), Paid(Entered),and Remaining(calculated) Amounts))
+// pick up date, seller, 
+// and prescription (if entered)
 function createInvoice(event) {
     // event.preventDefault();
 
@@ -869,6 +875,8 @@ function createInvoice(event) {
         })
 };
 
+// Search Invoice page function 
+// (searching for invoice by invoice id or (name and/or phone) of customer)
 function SearchInvoice(event) {
 
     const indexContainer = document.querySelector(".index_container");
