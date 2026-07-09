@@ -234,7 +234,7 @@ Custom styling for the application.
 
 # Mobile Responsiveness
 
-The application is responsive through custom CSS. All layout adaptation is handled manually without relying on any CSS framework grid or utility system.
+The application is responsive through custom CSS and Bootstrap. All layout adaptation is handled manually without relying on any CSS framework grid or utility system.
 
 ---
 
